@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yoga Pratista — Junior Data Analyst & Web Developer</title>
+<meta name="description" content="Portofolio Yoga Pratista, Junior Data Analyst & Web Developer berdomisili di Bandung, Jawa Barat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAF5;
+    --ink: #18181B;
+    --yellow: #FCD34D;
+    --orange: #F59E0B;
+    --blue: #BFDBFE;
+    --green: #BBF7D0;
+    --pink: #FBCFE8;
+    --white: #FFFFFF;
+    --border: 3px solid var(--ink);
+    --shadow: 4px 4px 0 var(--ink);
+    --shadow-lg: 6px 6px 0 var(--ink);
+    --sans: "Space Grotesk", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono: "Space Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.6;
+    background-image: radial-gradient(rgba(24,24,27,.12) 1.2px, transparent 1.2px);
+    background-size: 22px 22px;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  .wrap { width: min(1120px, 100% - 32px); margin-inline: auto; }
+  section { padding: 72px 0; }
+  .mono { font-family: var(--mono); }
+
+  /* ---------- Reusable pieces ---------- */
+  .card {
+    background: var(--white);
+    border: var(--border);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    font: 700 1rem/1 var(--sans);
+    padding: 14px 22px;
+    background: var(--yellow);
+    color: var(--ink);
+    border: var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform .12s ease, box-shadow .12s ease, background .12s;
+  }
+  .btn:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow-lg); }
+  .btn:active { transform: translate(4px, 4px); box-shadow: 0 0 0 var(--ink); }
+  .btn:focus-visible, .chip:focus-visible, .pkg:focus-visible, input:focus-visible, textarea:focus-visible, .menu-btn:focus-visible {
+    outline: 3px dashed var(--ink); outline-offset: 3px;
+  }
+  .btn.white { background: var(--white); }
+  .btn.orange { background: var(--orange); }
+  .btn.green { background: var(--green); }
+  .btn.small { padding: 10px 14px; font-size: .9rem; box-shadow: 3px 3px 0 var(--ink); }
+  .btn.small:active { box-shadow: 0 0 0 var(--ink); }
+
+  .section-head { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; margin-bottom: 32px; }
+  .section-head h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.1; letter-spacing: -.02em; }
+  .tag {
+    font: 700 .8rem/1 var(--mono);
+    text-transform: uppercase; letter-spacing: .06em;
+    background: var(--pink); border: 2px solid var(--ink);
+    padding: 6px 10px; border-radius: 999px; box-shadow: 2px 2px 0 var(--ink);
+    display: inline-block;
+  }
+  .pill {
+    display: inline-block; font: 700 .9rem/1 var(--mono);
+    padding: 9px 14px; border: 2px solid var(--ink); border-radius: 999px;
+    box-shadow: 3px 3px 0 var(--ink); background: var(--white);
+    transition: transform .12s, box-shadow .12s;
+  }
+  .pill:hover { transform: translate(-1px,-1px) rotate(-2deg); box-shadow: 4px 4px 0 var(--ink); }
+  .c0 { background: var(--yellow); } .c1 { background: var(--blue); }
+  .c2 { background: var(--green); } .c3 { background: var(--pink); } .c4 { background: #FED7AA; }
+
+  /* ---------- Navbar ---------- */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    background: var(--bg); border-bottom: var(--border);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 12px; }
+  .logo {
+    font-weight: 700; font-size: 1.15rem; text-decoration: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .logo-mark {
+    width: 36px; height: 36px; background: var(--yellow); border: 2px solid var(--ink);
+    border-radius: 10px; display: grid; place-items: center; box-shadow: 2px 2px 0 var(--ink); font-size: 1rem;
+  }
+  nav ul { list-style: none; display: flex; gap: 8px; align-items: center; }
+  nav ul a {
+    text-decoration: none; font-weight: 700; font-size: .95rem;
+    padding: 8px 12px; border-radius: 10px; border: 2px solid transparent;
+  }
+  nav ul a:hover { border-color: var(--ink); background: var(--yellow); }
+  nav ul a.btn { border: var(--border); }
+  .menu-btn { display: none; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-top: 56px; }
+  .hero-grid { display: grid; grid-template-columns: 1.3fr .9fr; gap: 40px; align-items: center; }
+  .status {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--green); border: 2px solid var(--ink); border-radius: 999px;
+    padding: 8px 16px; font: 700 .85rem/1.3 var(--mono); box-shadow: 3px 3px 0 var(--ink);
+    margin-bottom: 22px;
+  }
+  .dot { flex: none; width: 12px; height: 12px; border-radius: 50%; background: #16A34A; border: 2px solid var(--ink); animation: pulse 1.6s infinite; }
+  @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.35); } }
+  .hero h1 { font-size: clamp(2.3rem, 6.2vw, 4.2rem); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 18px; }
+  .hl { background: var(--yellow); padding: 0 .15em; border: 3px solid var(--ink); border-radius: 10px; box-shadow: 4px 4px 0 var(--ink); display: inline-block; transform: rotate(-1.5deg); margin-top: 6px; }
+  .hero p.lead { font-size: 1.15rem; max-width: 58ch; margin-bottom: 28px; }
+  .hero-cta { display: flex; flex-wrap: wrap; gap: 14px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; font: 400 .9rem/1.2 var(--mono); }
+  .meta span { background: var(--white); border: 2px solid var(--ink); border-radius: 8px; padding: 6px 10px; }
+
+  .avatar-card { padding: 18px; background: var(--blue); transform: rotate(2deg); position: relative; }
+  .avatar-frame {
+    aspect-ratio: 1; border: var(--border); border-radius: 12px; background: var(--yellow);
+    display: grid; place-items: center; overflow: hidden; position: relative;
+  }
+  .avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
+  .avatar-initials { font-size: clamp(4rem, 12vw, 7rem); font-weight: 700; letter-spacing: -.04em; }
+  .avatar-caption { margin-top: 14px; display: flex; justify-content: space-between; align-items: center; gap: 8px; font: 700 .85rem/1.2 var(--mono); }
+  .sticker {
+    position: absolute; top: -18px; right: -14px; background: var(--orange); border: 3px solid var(--ink);
+    border-radius: 999px; padding: 8px 14px; font: 700 .85rem/1 var(--mono); box-shadow: 3px 3px 0 var(--ink); transform: rotate(8deg);
+  }
+
+  /* ---------- Marquee ---------- */
+  .marquee { border-block: var(--border); background: var(--yellow); overflow: hidden; padding: 14px 0; }
+  .marquee-track { display: flex; width: max-content; animation: scroll 30s linear infinite; }
+  .marquee-track span { font: 700 1.05rem/1 var(--mono); text-transform: uppercase; padding-right: 36px; white-space: nowrap; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+
+  /* ---------- About ---------- */
+  .about-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 28px; }
+  .about-text { padding: 28px; }
+  .about-text p + p { margin-top: 14px; }
+  .skills-box { padding: 28px; background: var(--green); }
+  .skills-box h3 { margin-bottom: 14px; font-size: 1.2rem; }
+  .skill-group + .skill-group { margin-top: 22px; }
+  .skill-group h4 { font: 700 .8rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; }
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 22px; }
+  .stat { border: 2px solid var(--ink); border-radius: 12px; padding: 12px; background: var(--bg); text-align: center; box-shadow: 3px 3px 0 var(--ink); }
+  .stat b { display: block; font-size: 1.7rem; line-height: 1.1; }
+  .stat small { font: 400 .78rem/1.2 var(--mono); }
+
+  /* ---------- Projects ---------- */
+  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .project { display: flex; flex-direction: column; overflow: hidden; transition: transform .15s, box-shadow .15s; }
+  .project:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--ink); }
+  .project:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .project-top { padding: 18px 22px; border-bottom: var(--border); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .project-top .num { font: 700 .85rem/1 var(--mono); background: var(--white); border: 2px solid var(--ink); padding: 6px 10px; border-radius: 8px; }
+  .project-top .role { font: 700 .8rem/1.2 var(--mono); text-align: right; }
+  .project-body { padding: 22px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .project h3 { font-size: 1.5rem; line-height: 1.15; letter-spacing: -.01em; }
+  .project dl dt { font: 700 .75rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 4px; }
+  .project dl dd { font-size: .97rem; margin-bottom: 10px; }
+  .project .pills .pill { font-size: .78rem; padding: 6px 10px; box-shadow: 2px 2px 0 var(--ink); }
+  .project-links { margin-top: auto; display: flex; gap: 12px; flex-wrap: wrap; padding-top: 6px; }
+
+  /* ---------- Timeline ---------- */
+  .tl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .tl-col h3 { font-size: 1.3rem; margin-bottom: 18px; display: flex; align-items: center; gap: 10px; }
+  .timeline { list-style: none; position: relative; padding-left: 30px; }
+  .timeline::before { content: ""; position: absolute; left: 9px; top: 6px; bottom: 6px; width: 3px; background: var(--ink); }
+  .tl-item { position: relative; padding: 18px 20px; margin-bottom: 20px; }
+  .tl-item::before {
+    content: ""; position: absolute; left: -29px; top: 22px; width: 20px; height: 20px;
+    background: var(--orange); border: 3px solid var(--ink); border-radius: 50%;
+  }
+  .tl-date { font: 700 .8rem/1 var(--mono); background: var(--yellow); border: 2px solid var(--ink); padding: 5px 9px; border-radius: 8px; display: inline-block; margin-bottom: 10px; }
+  .tl-item h4 { font-size: 1.1rem; line-height: 1.25; }
+  .tl-item .org { font: 400 .88rem/1.3 var(--mono); margin: 4px 0 8px; }
+  .tl-item p { font-size: .95rem; }
+
+  /* ---------- Pendidikan & Sertifikasi ---------- */
+  .edu-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; }
+  .edu-card { overflow: hidden; transition: transform .15s, box-shadow .15s; }
+  .edu-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--ink); }
+  .edu-top { padding: 14px 20px; border-bottom: var(--border); display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .edu-icon { font-size: 1.6rem; line-height: 1; }
+  .edu-body { padding: 20px; }
+  .edu-body h4 { font-size: 1.25rem; line-height: 1.25; }
+  .edu-body .org { font: 700 .9rem/1.3 var(--mono); margin: 6px 0 10px; }
+  .edu-body p { font-size: .97rem; }
+  @media (max-width: 900px) { .edu-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Hire widget ---------- */
+  .hire { background: var(--yellow); border-block: var(--border); }
+  .hire-grid { display: grid; grid-template-columns: .85fr 1.15fr; gap: 36px; align-items: start; }
+  .hire-intro h2 { font-size: clamp(2rem, 4.5vw, 3rem); line-height: 1.05; letter-spacing: -.03em; margin-bottom: 16px; }
+  .hire-intro p { margin-bottom: 14px; }
+  .perks { list-style: none; display: grid; gap: 10px; margin-top: 18px; }
+  .perks li { background: var(--white); border: 2px solid var(--ink); border-radius: 10px; padding: 10px 14px; font-weight: 700; box-shadow: 3px 3px 0 var(--ink); }
+  .contact-list { display: grid; gap: 12px; margin-top: 22px; }
+  .contact-list a { justify-content: flex-start; text-align: left; word-break: break-all; }
+  .widget { padding: 0; overflow: hidden; }
+  .widget-head { background: var(--ink); color: var(--bg); padding: 14px 22px; display: flex; justify-content: space-between; align-items: center; font: 700 .9rem/1 var(--mono); gap: 10px; }
+  .widget-body { padding: 24px; display: grid; gap: 22px; }
+  .field-label { font: 700 .8rem/1 var(--mono); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 10px; display: block; }
+  .pkgs { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .pkg {
+    text-align: left; font: inherit; color: inherit; cursor: pointer;
+    background: var(--bg); border: 3px solid var(--ink); border-radius: 12px; padding: 14px;
+    box-shadow: 3px 3px 0 var(--ink); transition: transform .12s, box-shadow .12s, background .12s;
+  }
+  .pkg:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--ink); }
+  .pkg:active { transform: translate(3px,3px); box-shadow: 0 0 0 var(--ink); }
+  .pkg[aria-pressed="true"] { background: var(--orange); transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
+  .pkg .e { font-size: 1.4rem; display: block; }
+  .pkg b { display: block; font-size: 1.02rem; line-height: 1.2; margin-top: 4px; }
+  .pkg .price { font: 700 .88rem/1.2 var(--mono); display: block; margin: 4px 0 6px; }
+  .pkg small { font-size: .82rem; line-height: 1.35; display: block; }
+  input[type="text"], input[type="email"], textarea {
+    width: 100%; font: 400 1rem/1.4 var(--sans); color: var(--ink);
+    background: var(--white); border: 3px solid var(--ink); border-radius: 12px; padding: 12px 14px;
+    box-shadow: inset 3px 3px 0 rgba(24,24,27,.08);
+  }
+  input.invalid, textarea.invalid { background: #FEE2E2; }
+  textarea { min-height: 110px; resize: vertical; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .chip {
+    font: 700 .82rem/1 var(--mono); cursor: pointer; background: var(--blue); color: var(--ink);
+    border: 2px solid var(--ink); border-radius: 999px; padding: 8px 12px; box-shadow: 2px 2px 0 var(--ink);
+    transition: transform .1s, box-shadow .1s;
+  }
+  .chip:hover { transform: translate(-1px,-1px); box-shadow: 3px 3px 0 var(--ink); }
+  .chip:active { transform: translate(2px,2px); box-shadow: 0 0 0 var(--ink); }
+  .summary { display: flex; justify-content: space-between; align-items: center; gap: 12px; background: var(--bg); border: 2px dashed var(--ink); border-radius: 12px; padding: 12px 16px; font: 700 .95rem/1.3 var(--mono); }
+  .summary b { font-size: 1.05rem; text-align: right; }
+  .send-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .btn.send { width: 100%; padding: 17px 12px; font-size: 1.02rem; }
+  .error { color: #B91C1C; font: 700 .85rem/1.3 var(--mono); min-height: 1.2em; }
+  .success { display: none; text-align: center; padding: 36px 24px; }
+  .success.show { display: block; }
+  .success .big { font-size: 3.2rem; display: block; margin-bottom: 8px; }
+  .success h3 { font-size: 1.6rem; margin-bottom: 8px; }
+  .success p { margin-bottom: 18px; }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--ink); color: var(--bg); padding: 44px 0 30px; }
+  .foot-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: center; }
+  .socials { display: flex; flex-wrap: wrap; gap: 12px; }
+  .copy { margin-top: 26px; font: 400 .85rem/1.4 var(--mono); opacity: .8; }
+
+  /* ---------- Toast ---------- */
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 140%);
+    background: var(--white); border: var(--border); border-radius: 12px; box-shadow: var(--shadow);
+    padding: 12px 18px; font: 700 .9rem/1.3 var(--mono); z-index: 100; transition: transform .25s cubic-bezier(.3,1.6,.5,1);
+    max-width: calc(100% - 32px);
+  }
+  .toast.show { transform: translate(-50%, 0); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px) {
+    .hero-grid, .about-grid, .hire-grid, .tl-grid, .projects { grid-template-columns: 1fr; }
+    .avatar-card { max-width: 380px; margin-inline: auto; }
+    section { padding: 56px 0; }
+  }
+  @media (max-width: 720px) {
+    .menu-btn { display: inline-flex; }
+    nav ul {
+      display: none; position: absolute; top: 68px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+      background: var(--bg); border-bottom: var(--border); padding: 12px 16px 18px; gap: 6px;
+    }
+    nav ul.open { display: flex; }
+    nav ul a { display: block; border-color: var(--ink); background: var(--white); }
+    nav ul a.btn { background: var(--yellow); text-align: center; }
+  }
+  @media (max-width: 520px) {
+    body { font-size: 16px; }
+    .pkgs, .two, .send-row { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: 1fr; }
+    .widget-body { padding: 18px; }
+    .about-text, .skills-box { padding: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo" aria-label="Kembali ke atas">
+      <span class="logo-mark">★</span>
+      <span>Yoga Pratista</span>
+    </a>
+    <nav aria-label="Navigasi utama">
+      <ul id="navList">
+        <li><a href="#tentang">Tentang</a></li>
+        <li><a href="#proyek">Proyek</a></li>
+        <li><a href="#perjalanan">Perjalanan</a></li>
+        <li><a href="#hire" class="btn small">Hire Me!</a></li>
+      </ul>
+    </nav>
+    <button class="btn small white menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navList">☰ Menu</button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="status"><span class="dot"></span><span>Terbuka untuk peluang Junior Data Analyst / Web Developer</span></div>
+        <h1>Halo, saya Yoga Pratista, <span class="hl">Data Analyst & Web Developer</span> (Junior)</h1>
+        <p class="lead">Junior yang antusias dan terus berkembang di bidang data dan pengembangan web. Saya mengolah data dengan Python &amp; SQL, membangun antarmuka dengan HTML, CSS, JavaScript, dan React, serta senang belajar hal baru setiap hari.</p>
+        <div class="hero-cta">
+          <a href="#hire" class="btn orange">🤝 Ajak Kolaborasi</a>
+          <a href="#proyek" class="btn white">Lihat Proyek →</a>
+        </div>
+        <div class="meta">
+          <span>📍 Bandung, Jawa Barat</span>
+          <span>🎯 Junior Data Analyst</span>
+          <span>💻 Junior Web Developer</span>
+        </div>
+      </div>
+
+      <div class="card avatar-card">
+        <span class="sticker">Open to work!</span>
+        <div class="avatar-frame">
+          <!-- Untuk memakai foto: hapus baris initials di bawah, lalu pakai:
+               <img src="foto-yoga.jpg" alt="Foto Yoga Pratista"> -->
+          <img src="fotoyoga.jpeg" alt="Foto Yoga Pratista">
+        </div>
+        <div class="avatar-caption"><span>Yoga Pratista</span><span>📍 Bandung</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marquee">
+      <span>★ Data Analyst (Junior)</span>
+      <span>★ Web Developer (Junior)</span>
+      <span>★ Python &amp; SQL</span>
+      <span>★ React</span>
+      <span>★ Terus berkembang</span>
+      <span>★ Siap kolaborasi</span>
+    </div>
+  </div>
+
+  <!-- ===================== TENTANG & SKILLS ===================== -->
+  <section id="tentang">
+    <div class="wrap">
+      <div class="section-head"><span class="tag">01</span><h2>Tentang &amp; Keahlian</h2></div>
+      <div class="about-grid">
+        <div class="card about-text">
+          <p>Saya Yoga Pratista, lulusan S1 Universitas Adhirajasa Reswara Sanjaya dan bersertifikat resmi Data Analyst dari MySkill, berdomisili di Bandung, Jawa Barat. Saya sedang membangun karier sebagai <b>Junior Data Analyst</b> dan <b>Junior Web Developer</b>, dua bidang yang saling melengkapi: data memberi arah, web membuat hasilnya bisa dipakai orang.</p>
+          <p>Saya belajar lewat proyek nyata: dari membuat website portofolio, menguji sistem login SIAKAD dengan Qase.io, sampai membuat seri video edukasi animasi. Saya terbuka pada masukan, cepat belajar, dan terus mengasah kemampuan teknis saya.</p>
+          <div class="stats">
+            <div class="stat"><b>3</b><small>Proyek unggulan</small></div>
+            <div class="stat"><b>8</b><small>Bahasa &amp; framework</small></div>
+            <div class="stat"><b>4</b><small>Tools harian</small></div>
+          </div>
+        </div>
+
+        <div class="card skills-box">
+          <h3>🧰 Tools &amp; Skill</h3>
+
+          <div class="skill-group">
+            <h4>Bahasa &amp; Framework</h4>
+            <div class="pills">
+              <span class="pill c0">Python</span>
+              <span class="pill c1">SQL</span>
+              <span class="pill c2">HTML</span>
+              <span class="pill c3">CSS</span>
+              <span class="pill c4">React</span>
+              <span class="pill c0">PHP</span>
+              <span class="pill c1">.NET</span>
+              <span class="pill c2">Golang</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>Tools</h4>
+            <div class="pills">
+              <span class="pill c3">VS Code</span>
+              <span class="pill c4">Google Colab</span>
+              <span class="pill c0">Jupyter Notebook</span>
+              <span class="pill c1">Git</span>
+              <span class="pill c2">Qase.io</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>Sikap Kerja</h4>
+            <div class="pills">
+              <span class="pill c3">Antusias belajar</span>
+              <span class="pill c4">Terus berkembang</span>
+              <span class="pill c0">Terbuka pada masukan</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PROYEK ===================== -->
+  <section id="proyek" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head"><span class="tag">02</span><h2>Etalase Proyek</h2></div>
+      <div class="projects">
+
+        <article class="card project">
+          <div class="project-top c0"><span class="num">#01</span><span class="role">Developer &amp; Designer</span></div>
+          <div class="project-body">
+            <h3>Website Portofolio Personal</h3>
+            <dl>
+              <dt>🧩 Masalah</dt>
+              <dd>Butuh satu tempat yang ringkas untuk memperkenalkan diri dan karya kepada perekrut dan calon klien.</dd>
+              <dt>💡 Solusi</dt>
+              <dd>Membangun single-page portfolio dengan mode gelap dan aksen neon hijau menggunakan HTML, CSS, dan JavaScript murni.</dd>
+            </dl>
+            <div class="pills"><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span></div>
+            <div class="project-links">
+              <a class="btn small" href="#hire">💬 Minta Detail</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="project-top c1"><span class="num">#02</span><span class="role">Software Tester</span></div>
+          <div class="project-body">
+            <h3>Software Testing dengan Qase.io</h3>
+            <dl>
+              <dt>🧩 Masalah</dt>
+              <dd>Fitur login pada SIAKAD Universitas ARS perlu dipastikan berjalan sesuai harapan sebelum dipakai pengguna.</dd>
+              <dt>💡 Solusi</dt>
+              <dd>Menyusun dan menjalankan pengujian sistem login SIAKAD menggunakan Qase.io, lengkap dengan pencatatan test case dan hasilnya.</dd>
+            </dl>
+            <div class="pills"><span class="pill">Qase.io</span><span class="pill">Software Testing</span><span class="pill">Test Case</span></div>
+            <div class="project-links">
+              <a class="btn small" href="#hire">💬 Minta Detail</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card project">
+          <div class="project-top c2"><span class="num">#03</span><span class="role">Kreator Konten</span></div>
+          <div class="project-body">
+            <h3>Video Edukasi Animasi: Seri Laut</h3>
+            <dl>
+              <dt>🧩 Masalah</dt>
+              <dd>Pengetahuan tentang kehidupan laut perlu dikemas dengan cara yang menyenangkan agar mudah dipahami dan diikuti.</dd>
+              <dt>💡 Solusi</dt>
+              <dd>Membuat seri video edukasi animasi dengan tiga karakter: Pipo, Udi, dan Kiko, yang menemani penonton belajar tentang laut.</dd>
+            </dl>
+            <div class="pills"><span class="pill">Animasi</span><span class="pill">Konten Edukasi</span><span class="pill">Pipo · Udi · Kiko</span></div>
+            <div class="project-links">
+              <a class="btn small" href="#hire">💬 Minta Detail</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PERJALANAN ===================== -->
+  <section id="perjalanan" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head"><span class="tag">03</span><h2>Perjalanan Belajar</h2></div>
+      <div class="tl-grid">
+
+        <div class="tl-col">
+          <h3>📊 Jalur Data</h3>
+          <ol class="timeline">
+            <li class="card tl-item">
+              <span class="tl-date">Fondasi</span>
+              <h4>Python &amp; SQL</h4>
+              <div class="org">Bahasa utama untuk analisis data</div>
+              <p>Mengolah dan menyiapkan data dengan Python serta menarik informasi dari basis data dengan SQL.</p>
+            </li>
+            <li class="card tl-item">
+              <span class="tl-date">Praktik</span>
+              <h4>Jupyter Notebook &amp; Google Colab</h4>
+              <div class="org">Lingkungan eksplorasi data</div>
+              <p>Bereksperimen, mendokumentasikan langkah analisis, dan berbagi hasil secara runtut.</p>
+            </li>
+          </ol>
+        </div>
+
+        <div class="tl-col">
+          <h3>🌐 Jalur Web</h3>
+          <ol class="timeline">
+            <li class="card tl-item">
+              <span class="tl-date">Fondasi</span>
+              <h4>HTML, CSS &amp; JavaScript</h4>
+              <div class="org">Dasar antarmuka web</div>
+              <p>Membangun halaman responsif, salah satunya website portofolio personal.</p>
+            </li>
+            <li class="card tl-item">
+              <span class="tl-date">Pengembangan</span>
+              <h4>React, PHP, .NET &amp; Golang</h4>
+              <div class="org">Frontend dan backend</div>
+              <p>Menjelajahi framework dan bahasa pemrograman untuk memahami sisi tampilan sekaligus logika di belakangnya.</p>
+            </li>
+            <li class="card tl-item">
+              <span class="tl-date">Kualitas</span>
+              <h4>Software Testing &amp; Git</h4>
+              <div class="org">Qase.io · Git</div>
+              <p>Menguji sistem dengan test case terstruktur dan mengelola perubahan kode dengan Git.</p>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+
+      <!-- ---------- Pendidikan & Sertifikasi ---------- -->
+      <div class="section-head" style="margin-top:56px"><span class="tag">🎓</span><h2 style="font-size:clamp(1.5rem,3vw,2rem)">Pendidikan &amp; Sertifikasi</h2></div>
+      <div class="edu-grid">
+
+        <article class="card edu-card">
+          <div class="edu-top c1"><span class="edu-icon">🎓</span><span class="tl-date" style="margin:0;background:var(--white)">Lulusan S1</span></div>
+          <div class="edu-body">
+            <h4>Sarjana (S1)</h4>
+            <div class="org">Universitas Adhirajasa Reswara Sanjaya</div>
+            <p>Menyelesaikan pendidikan jenjang Sarjana (S1) dan lulus dari Universitas Adhirajasa Reswara Sanjaya (ARS University).</p>
+          </div>
+        </article>
+
+        <article class="card edu-card">
+          <div class="edu-top c0"><span class="edu-icon">📜</span><span class="tl-date" style="margin:0;background:var(--white)">Bersertifikat Resmi</span></div>
+          <div class="edu-body">
+            <h4>Sertifikasi Data Analyst</h4>
+            <div class="org">MySkill</div>
+            <p>Telah menyelesaikan program pembelajaran Data Analyst dan memperoleh sertifikat resmi dari MySkill.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HIRE ME WIDGET ===================== -->
+  <section class="hire" id="hire">
+    <div class="wrap hire-grid">
+      <div class="hire-intro">
+        <span class="tag">04 · Kontak</span>
+        <h2 style="margin-top:14px">Yuk, kerja bareng! ☕</h2>
+        <p>Sedang mencari talenta junior untuk tim data atau pengembangan web? Atau punya proyek kecil yang ingin dikerjakan bareng? Pilih paket di samping, tulis pesan singkat, dan saya balas secepatnya.</p>
+        <ul class="perks">
+          <li>⚡ Respons cepat lewat WhatsApp</li>
+          <li>📚 Antusias belajar dan terbuka pada masukan</li>
+          <li>🤝 Siap berdiskusi soal peran dan proyek</li>
+        </ul>
+        <div class="contact-list">
+          <a class="btn white" href="mailto:yoga.pratista.2016@gmail.com">✉️ yoga.pratista.2016@gmail.com</a>
+          <a class="btn green" href="https://wa.me/62895371873400" target="_blank" rel="noopener">💬 WhatsApp: 0895371873400</a>
+        </div>
+      </div>
+
+      <div class="card widget">
+        <div class="widget-head"><span>★ AJAK KOLABORASI</span><span>@yogapratista</span></div>
+
+        <form class="widget-body" id="hireForm" novalidate>
+          <div>
+            <span class="field-label">Pilih jenis kerja sama</span>
+            <div class="pkgs" id="pkgs" role="group" aria-label="Jenis kerja sama">
+              <button type="button" class="pkg" data-name="Ngobrol & Konsultasi" data-price="Gratis" aria-pressed="true">
+                <span class="e">☕</span><b>Ngobrol &amp; Konsultasi</b><span class="price">Gratis</span><small>Diskusi awal santai</small>
+              </button>
+              <button type="button" class="pkg" data-name="Proyek Kecil / Freelance" data-price="Nego" aria-pressed="false">
+                <span class="e">⚡</span><b>Proyek Kecil / Freelance</b><span class="price">Nego</span><small>Web sederhana atau olah data</small>
+              </button>
+              <button type="button" class="pkg" data-name="Magang / Posisi Junior" data-price="Terbuka" aria-pressed="false">
+                <span class="e">🎯</span><b>Magang / Posisi Junior</b><span class="price">Terbuka</span><small>Data Analyst atau Web Dev</small>
+              </button>
+              <button type="button" class="pkg" data-name="Kolaborasi Proyek" data-price="Fleksibel" aria-pressed="false">
+                <span class="e">🤝</span><b>Kolaborasi Proyek</b><span class="price">Fleksibel</span><small>Belajar dan berkarya bareng</small>
+              </button>
+            </div>
+          </div>
+
+          <div class="two">
+            <div>
+              <label class="field-label" for="fName">Nama kamu</label>
+              <input type="text" id="fName" autocomplete="name" placeholder="Budi Santoso">
+            </div>
+            <div>
+              <label class="field-label" for="fEmail">Email <span style="text-transform:none">(untuk kirim via email)</span></label>
+              <input type="email" id="fEmail" autocomplete="email" placeholder="budi@perusahaan.com">
+            </div>
+          </div>
+
+          <div>
+            <span class="field-label">Pesan cepat</span>
+            <div class="chips" id="chips">
+              <button type="button" class="chip">+ Halo! Saya tertarik dengan portofolio kamu.</button>
+              <button type="button" class="chip">+ Ada proyek yang ingin dikerjakan bareng.</button>
+              <button type="button" class="chip">+ Kami sedang membuka lowongan junior.</button>
+              <button type="button" class="chip">+ Bisa jadwalkan call singkat?</button>
+            </div>
+            <textarea id="fMsg" aria-label="Pesan" placeholder="Ceritakan singkat kebutuhan atau proyekmu..."></textarea>
+          </div>
+
+          <div class="summary"><span>Dipilih:</span><b id="sumPkg">Ngobrol &amp; Konsultasi · Gratis</b></div>
+          <div class="error" id="formError" role="alert"></div>
+
+          <div class="send-row">
+            <button type="submit" class="btn send orange" id="sendMail">Kirim via Email ✉️</button>
+            <button type="button" class="btn send green" id="sendWA">Kirim via WhatsApp 💬</button>
+          </div>
+        </form>
+
+        <div class="success" id="success">
+          <span class="big">🎉</span>
+          <h3>Makasih, <span id="okName"></span>!</h3>
+          <p id="okText"></p>
+          <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap">
+            <button class="btn white" id="copyBtn" type="button">📋 Salin Pesan</button>
+            <button class="btn" id="againBtn" type="button">Kirim Lagi</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div style="font-size:1.4rem;font-weight:700">Yoga Pratista</div>
+        <div class="mono" style="font-size:.9rem;opacity:.85">Junior Data Analyst &amp; Web Developer · Bandung, Jawa Barat</div>
+      </div>
+      <div class="socials">
+        <a class="btn small c0" href="mailto:yoga.pratista.2016@gmail.com">Email</a>
+        <a class="btn small c2" href="https://wa.me/62895371873400" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="copy" id="copyright"></div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  /* ====== Nomor & email tujuan (ubah di sini bila perlu) ====== */
+  var EMAIL = "yoga.pratista.2016@gmail.com";
+  var WA_NUMBER = "62895371873400";   // format internasional tanpa + dan tanpa 0 di depan
+
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* Tahun otomatis di footer */
+  $("copyright").textContent = "© " + new Date().getFullYear() + " Yoga Pratista. Dibuat dengan ☕ dan border tebal.";
+
+  /* Marquee: gandakan isi agar loop mulus */
+  var track = $("marquee");
+  var base = track.innerHTML;
+  track.innerHTML = base + base + base + base;
+
+  /* Menu mobile */
+  var menuBtn = $("menuBtn"), navList = $("navList");
+  menuBtn.addEventListener("click", function () {
+    var open = navList.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", open);
+  });
+  navList.addEventListener("click", function (e) {
+    if (e.target.closest("a")) { navList.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); }
+  });
+
+  /* Toast */
+  var tt;
+  function toast(text) {
+    var el = $("toast");
+    el.textContent = text;
+    el.classList.add("show");
+    clearTimeout(tt);
+    tt = setTimeout(function () { el.classList.remove("show"); }, 2600);
+  }
+
+  /* Pilih paket */
+  var pkgBox = $("pkgs");
+  var selected = { name: "Ngobrol & Konsultasi", price: "Gratis" };
+  function updateSummary() { $("sumPkg").textContent = selected.name + " · " + selected.price; }
+  pkgBox.addEventListener("click", function (e) {
+    var b = e.target.closest(".pkg");
+    if (!b) return;
+    pkgBox.querySelectorAll(".pkg").forEach(function (p) { p.setAttribute("aria-pressed", p === b ? "true" : "false"); });
+    selected = { name: b.dataset.name, price: b.dataset.price };
+    updateSummary();
+  });
+
+  /* Pesan cepat */
+  var msg = $("fMsg");
+  $("chips").addEventListener("click", function (e) {
+    var b = e.target.closest(".chip");
+    if (!b) return;
+    var t = b.textContent.replace(/^\+\s*/, "");
+    msg.value = msg.value.trim() ? msg.value.trim() + "\n" + t : t;
+    msg.classList.remove("invalid");
+    msg.focus();
+  });
+
+  /* Validasi + susun pesan */
+  var lastBody = "";
+  function collect(needEmail) {
+    var name = $("fName"), email = $("fEmail");
+    [name, email, msg].forEach(function (f) { f.classList.remove("invalid"); });
+    var errs = [];
+    if (!name.value.trim()) { name.classList.add("invalid"); errs.push("nama"); }
+    if (needEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { email.classList.add("invalid"); errs.push("email yang valid"); }
+    if (!msg.value.trim()) { msg.classList.add("invalid"); errs.push("pesan"); }
+    if (errs.length) {
+      $("formError").textContent = "⚠ Mohon isi " + errs.join(", ") + ".";
+      return null;
+    }
+    $("formError").textContent = "";
+    var lines = [
+      "Halo Yoga,", "",
+      msg.value.trim(), "",
+      "—",
+      "Jenis kerja sama: " + selected.name + " (" + selected.price + ")",
+      "Nama: " + name.value.trim()
+    ];
+    if (email.value.trim()) lines.push("Email: " + email.value.trim());
+    lastBody = lines.join("\n");
+    return { name: name.value.trim() };
+  }
+
+  function showSuccess(name, text) {
+    $("okName").textContent = name;
+    $("okText").textContent = text;
+    $("hireForm").style.display = "none";
+    $("success").classList.add("show");
+    toast("Pesan siap dikirim! 🎉");
+  }
+
+  /* Kirim via email (mailto) */
+  $("hireForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var d = collect(true);
+    if (!d) return;
+    var subject = "[Portofolio] " + selected.name + " — " + d.name;
+    showSuccess(d.name, "Aplikasi email kamu akan terbuka dengan pesan yang sudah terisi, tinggal tekan kirim. Kalau tidak terbuka, salin pesannya dan kirim manual ke " + EMAIL + ".");
+    window.location.href = "mailto:" + EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lastBody);
+  });
+
+  /* Kirim via WhatsApp */
+  $("sendWA").addEventListener("click", function () {
+    var d = collect(false);
+    if (!d) return;
+    showSuccess(d.name, "WhatsApp akan terbuka di tab baru dengan pesan yang sudah terisi, tinggal tekan kirim. Kalau tidak terbuka, salin pesannya dan kirim manual ke 0895371873400.");
+    window.open("https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(lastBody), "_blank", "noopener");
+  });
+
+  /* Salin pesan */
+  $("copyBtn").addEventListener("click", function () {
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = lastBody; document.body.appendChild(ta); ta.select();
+      try { document.execCommand("copy"); toast("Pesan disalin ✔"); } catch (_) { toast("Gagal menyalin, salin manual ya"); }
+      ta.remove();
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(lastBody).then(function () { toast("Pesan disalin ✔"); }, fallback);
+    } else { fallback(); }
+  });
+
+  /* Kirim lagi */
+  $("againBtn").addEventListener("click", function () {
+    $("success").classList.remove("show");
+    $("hireForm").style.display = "";
+    $("hireForm").reset();
+    pkgBox.querySelectorAll(".pkg").forEach(function (p, i) { p.setAttribute("aria-pressed", i === 0 ? "true" : "false"); });
+    selected = { name: "Ngobrol & Konsultasi", price: "Gratis" };
+    updateSummary();
+  });
+})();
+</script>
+</body>
+</html>
